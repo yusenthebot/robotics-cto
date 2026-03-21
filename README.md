@@ -12,6 +12,10 @@
   A production-grade Claude Code configuration that turns a single product owner into a full robotics development operation -- with autonomous AI agents handling spec writing, architecture, parallel TDD execution, code review, and documentation.
 </p>
 
+<p align="center">
+  English | <a href="README_CN.md">中文</a>
+</p>
+
 ---
 
 ## The Problem
