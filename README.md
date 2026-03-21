@@ -5,7 +5,7 @@
 <h1 align="center">Robotics CTO</h1>
 
 <p align="center">
-  <strong>你的 AI 工程团队。你做决策，Agent 写代码。</strong>
+  <strong>你的 AI 工程团队。你做决策，Agent 写代码， 跑测试， 给反馈。</strong>
   <br/>
   <strong>Your AI engineering team for robotics. You lead. Agents build.</strong>
 </p>
@@ -18,11 +18,11 @@
 
 ## 痛点
 
-开发机器人软件需要完整的工程团队：架构师、开发、测试、技术文档。招人慢、成本高、难以扩展。AI 编程助手有帮助，但你仍然需要逐个函数地微管理。
+开发机器人软件需要完整的工程团队：架构师、开发、测试、技术文档。招人慢、成本高、一人全栈实在太行苦。AI 编程助手有帮助，但你仍然需要逐个函数地微管理。
 
 ## 解决方案
 
-**Robotics CTO** 在 Claude Code 内部构建了一个完整的 AI 工程组织：
+**Robotics CTO** 在 Claude Code 内部构建了一个完整的 AI 工程组织,高效率利用agent teams：
 
 ```
 你（产品负责人）
