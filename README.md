@@ -100,6 +100,9 @@ robotics-cto/
 
 ## Quick Start
 
+Give the link to your agent let it setup for you. 
+Or:
+
 ### 1. Drop the governance model into your project
 
 ```bash
