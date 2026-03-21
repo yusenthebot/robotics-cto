@@ -22,7 +22,7 @@
 
 ## 解决方案
 
-**Robotics CTO** 在 Claude Code 内部构建了一个完整的 AI 工程组织,高效率利用agent teams：
+**Robotics CTO**提供了一套标准化的agent team工作流程，在 Claude Code 内部构建了一个完整的 AI 工程组织, 高效率控制你的agents：
 
 ```
 你（产品负责人）
