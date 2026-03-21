@@ -1,79 +1,112 @@
-# Claude Robotics Toolkit
+<p align="center">
+  <img src="vector.jpg" width="800" alt="VECTOR" />
+</p>
 
-A complete Claude Code configuration for **AI-driven robotics development** -- designed for product owners who direct strategy while AI agents handle all implementation.
+<h1 align="center">Robotics CTO</h1>
 
-## Who This Is For
+<p align="center">
+  <strong>Your AI engineering team for robotics. You lead. Agents build.</strong>
+</p>
 
-- **Non-developer founders/CTOs** building robotics products with Claude Code as the engineering team
-- **Solo roboticists** who want structured, parallel AI development with quality gates
-- **Teams** adopting ROS2 who want a proven spec-to-code methodology
+<p align="center">
+  A production-grade Claude Code configuration that turns a single product owner into a full robotics development operation -- with autonomous AI agents handling spec writing, architecture, parallel TDD execution, code review, and documentation.
+</p>
 
-## Architecture
+---
+
+## The Problem
+
+Building robotics software requires a full engineering team: architects, developers, QA, technical writers. Hiring is slow, expensive, and hard to scale. AI coding assistants help, but they still need you to micromanage every function.
+
+## The Solution
+
+**Robotics CTO** gives you a complete AI engineering organization inside Claude Code:
 
 ```
-You (Product Owner) -- strategy, architecture approval, release sign-off
-  |
+You (Product Owner)
+  |  approve specs, architecture, releases
   v
-Dispatcher (Main Claude / Opus) -- intent parsing, routing, executive summaries
+Dispatcher (Opus) -- routes tasks, prepares executive summaries
   |
-  +-- Architect (Opus agent) -------- spec/plan authoring, architecture decisions
-  +-- Engineer x3 (Sonnet agents) --- parallel TDD execution (Alpha/Beta/Gamma)
-  +-- QA (built-in review agents) --- code-reviewer, security-reviewer, tdd-guide
-  +-- Scribe (Haiku agent) ---------- docs, progress tracking, coordination
+  +-- Architect (Opus) ---------- writes specs, designs systems, makes tech decisions
+  +-- Alpha (Sonnet) ------------ core developer, parallel TDD execution
+  +-- Beta (Sonnet) ------------- core developer, parallel TDD execution
+  +-- Gamma (Sonnet) ------------ core developer, parallel TDD execution
+  +-- QA (built-in agents) ------ code review, security review, test enforcement
+  +-- Scribe (Haiku) ------------ documentation, progress tracking
 ```
 
-### Cost-Optimized Model Selection
+You describe what you want. The agents figure out how, write tests first, implement in parallel, review each other's code, and deliver a completion report. You approve or reject.
 
-| Role | Model | Cost | Usage |
-|------|-------|------|-------|
-| Architect / Escalation | Opus | $$$ | Architecture decisions, complex debugging |
-| Engineer (Alpha/Beta/Gamma) | Sonnet | $$ | 90% of all development work |
-| Scribe | Haiku | $ | Documentation, run frequently |
+---
 
-## Development Methodology: SDD + TDD
+## How It Works
+
+### Spec-Driven Development + Test-Driven Development
+
+Every feature flows through a disciplined pipeline:
 
 ```
-     DESIGN (Spec-Driven)                    BUILD (Test-Driven, per task)
-spec.md -> plan.md -> task.md    ->    RED -> GREEN -> REFACTOR
- (what)     (how)      (steps)        (test)  (impl)   (clean)
- [approve]  [approve]   [QA]          x N agents in parallel
+DESIGN                                    BUILD
+spec.md --> plan.md --> task.md    -->    RED --> GREEN --> REFACTOR
+ (what)      (how)      (steps)          (test)   (impl)    (clean)
+ [you]       [you]       [QA]            x3 agents in parallel
 ```
 
-1. **Spec** (what & why) -- Architect writes, you approve
-2. **Plan** (how) -- Architect writes, you approve architecture changes
-3. **Tasks** (steps) -- decomposed with TDD structure, QA reviews
-4. **Execute** -- Alpha/Beta/Gamma run parallel TDD cycles
-5. **Verify** -- full test suite, code review, security review
-6. **Deliver** -- completion report, you approve release
+### Decision Boundaries
+
+Not everything needs your attention. The system knows what to escalate:
+
+| Decision | Who Decides | What You See |
+|----------|-------------|--------------|
+| Function implementation, bug fixes | Agents autonomously | Nothing |
+| New components | Architect decides | Brief notification |
+| Interface changes, new dependencies | **You approve** | Executive summary |
+| Security policy, hardware changes | **You decide** | Detailed report |
+| Release to production | **You approve** | Completion report with test results |
+
+### Parallel Execution
+
+Three identical Sonnet agents (Alpha, Beta, Gamma) work on independent tasks simultaneously via git worktrees. A wave of 3 tasks completes in the time of 1.
+
+### Cost-Optimized Model Tiers
+
+| Tier | Model | Role | When |
+|------|-------|------|------|
+| Reasoning | Opus | Architecture, escalation | Complex decisions only |
+| Execution | Sonnet | Development, testing | 90% of all work |
+| Utility | Haiku | Documentation, tracking | Run frequently, nearly free |
+
+---
 
 ## What's Included
 
 ```
-claude-robotics-toolkit/
-|-- CLAUDE.md                        # Governance model (install to project root)
+robotics-cto/
+|-- CLAUDE.md                        # Governance model -- drop into any project root
 |-- rules/
-|   |-- coding-and-patterns.md       # Style, immutability, ROS2/Python patterns
-|   |-- security.md                  # OWASP, secrets, robotics-specific security
-|   |-- testing.md                   # TDD methodology, 80% coverage, ROS2 testing
-|   +-- workflow.md                  # Git conventions, docs hygiene
+|   |-- coding-and-patterns.md       # Style guide, immutability, ROS2 + Python patterns
+|   |-- security.md                  # OWASP, secrets management, robotics-specific security
+|   |-- testing.md                   # TDD methodology, 80% coverage, 3-layer ROS2 testing
+|   +-- workflow.md                  # Git conventions, documentation hygiene
 |-- skills/
-|   |-- sdd-workflow.md              # Full SDD+TDD workflow (the core methodology)
-|   |-- agent-team.md                # 5-agent team definitions (Lead/Alpha/Beta/Gamma/Scribe)
-|   +-- ros2-development.md          # ROS2 lifecycle nodes, launch files, safety-critical rules
-+-- settings.json.example            # Reference Claude Code settings
+|   |-- sdd-workflow.md              # Complete SDD+TDD pipeline with templates
+|   |-- agent-team.md                # 5-agent team definitions and coordination protocol
+|   +-- ros2-development.md          # Lifecycle nodes, QoS, safety-critical patterns, TF2
++-- settings.json.example            # Reference Claude Code configuration
 ```
 
-## Installation
+---
 
-### 1. Copy governance model to your project
+## Quick Start
+
+### 1. Drop the governance model into your project
 
 ```bash
 cp CLAUDE.md /path/to/your/ros2_workspace/CLAUDE.md
 ```
 
-Edit the `CLAUDE.md` to replace placeholder names with your own.
-
-### 2. Install rules (global)
+### 2. Install rules globally
 
 ```bash
 mkdir -p ~/.claude/rules/
@@ -82,23 +115,17 @@ cp rules/*.md ~/.claude/rules/
 
 ### 3. Install skills
 
-Skills go into `~/.claude/skills/` -- each `.md` file becomes its own skill directory:
-
 ```bash
-# Create skill directories
 for skill in sdd-workflow agent-team ros2-development; do
   mkdir -p ~/.claude/skills/$skill
   cp skills/$skill.md ~/.claude/skills/$skill/SKILL.md
 done
 ```
 
-### 4. Install slash commands
-
-Extract the commands section from `sdd-workflow.md` into a command file:
+### 4. Set up the SDD slash command
 
 ```bash
 mkdir -p ~/.claude/commands/
-# The SDD command entry point
 cat > ~/.claude/commands/sdd.md << 'EOF'
 ---
 description: "SDD+TDD workflow. spec.md -> plan.md -> task.md -> parallel TDD."
@@ -112,63 +139,63 @@ EOF
 ### 5. Apply settings (optional)
 
 ```bash
-# Review and merge with your existing settings
+# Review first, then merge with your existing ~/.claude/settings.json
 cat settings.json.example
 ```
 
-## Key Concepts
+### 6. Start building
 
-### Decision Boundaries
-
-Not everything needs your approval. The toolkit defines clear boundaries:
-
-| Decision | Who Decides | You See |
-|----------|-------------|---------|
-| Function implementation | Engineer agents | Nothing |
-| Bug fixes | Engineer agents | Nothing |
-| New ROS2 nodes | Architect | Notification |
-| Interface changes (msg/srv) | **You approve** | Executive Summary |
-| New dependencies | **You approve** | Executive Summary |
-| Security policy | **You decide** | Security report |
-| Release to main | **You approve** | Completion report |
-
-### Executive Summaries
-
-Agents never dump full documents for your review. They provide structured summaries:
-
-```markdown
-## Review Request: [Module Name]
-### One-liner
-### Key Decisions (need your call)
-### Impact
-### Risks
+```
+/sdd init "Add LIDAR obstacle avoidance node"
 ```
 
-### Parallel Execution
+The Architect agent writes a spec. You review a one-paragraph executive summary. Approve, and the pipeline runs autonomously until delivery.
 
-Alpha, Beta, and Gamma are identical Sonnet agents that work on independent tasks simultaneously via git worktrees. A wave of 3 tasks runs 3x faster than serial execution.
+---
 
-## Adapting for Non-ROS2 Projects
+## Commands
 
-The governance model, SDD+TDD methodology, and agent team architecture work for any tech stack. To adapt:
+| Command | Action |
+|---------|--------|
+| `/sdd init <description>` | Start a new feature -- creates spec with testable acceptance criteria |
+| `/sdd spec` | Generate or revise the specification |
+| `/sdd plan` | Create technical plan with test strategy per module |
+| `/sdd tasks` | Decompose into TDD-structured tasks with dependency graph |
+| `/sdd execute` | Launch parallel TDD execution across Alpha/Beta/Gamma |
+| `/sdd status` | Current phase, progress, and test metrics |
+| `/sdd review` | Submit current phase for your review (executive summary) |
+| `/sdd approve` | Approve and advance to next phase |
 
-1. In `CLAUDE.md`: replace ROS2 references with your framework
-2. In `rules/`: swap `colcon` commands for your build system
-3. In `skills/ros2-development.md`: replace with your domain-specific patterns
-4. Keep everything else as-is -- the methodology is stack-agnostic
+---
 
-## Slash Commands
+## ROS2-Native
 
-| Command | What It Does |
-|---------|-------------|
-| `/sdd init <desc>` | Start new feature -- create spec with test contracts |
-| `/sdd spec` | Generate/revise specification |
-| `/sdd plan` | Create technical plan with test strategy |
-| `/sdd tasks` | Decompose into TDD-structured tasks |
-| `/sdd execute` | Launch parallel TDD execution |
-| `/sdd status` | Show phase + progress + test counts |
-| `/sdd review` | Submit for owner review (executive summary) |
-| `/sdd approve` | Approve current phase, advance |
+The toolkit ships with production patterns for ROS2 Humble:
+
+- **Lifecycle nodes** -- deterministic startup/shutdown for all hardware interfaces
+- **QoS strategy matrix** -- RELIABLE for commands, BEST_EFFORT for high-frequency sensors
+- **Launch file patterns** -- parameterized sim/real switching
+- **Safety-critical rules** -- no dynamic allocation in RT paths, watchdog timers, E-stop independence
+- **3-layer testing** -- unit (pytest/gtest), integration (launch_testing), system (simulation)
+- **TF2 frame conventions** -- standard transform tree management
+- **Component containers** -- zero-copy intra-process communication
+
+---
+
+## Adapting to Other Stacks
+
+The governance model, SDD+TDD methodology, and agent team architecture are **stack-agnostic**. To use with a different framework:
+
+1. `CLAUDE.md` -- replace the tech stack section
+2. `rules/` -- swap build/test commands for your toolchain
+3. `skills/ros2-development.md` -- replace with your domain patterns
+4. Everything else works as-is
+
+---
+
+## Background
+
+Built and battle-tested at [Vector Robotics](https://github.com/yusenthebot) -- developing autonomous navigation stacks, robotic arm control (SO-101 + MoveIt2), and perception pipelines. This configuration runs real ROS2 development daily with Claude Code as the entire engineering team.
 
 ## License
 
