@@ -5,7 +5,7 @@
 <h1 align="center">Robotics CTO</h1>
 
 <p align="center">
-  <strong>你的 AI 工程团队。你做决策，Agent 写代码， 跑测试， 给反馈。</strong>
+  <strong>我们机器人工程师也要翻身农奴把歌唱！组建你的 AI 工程团队。你做决策，Agent 写代码， 跑测试， 给反馈。</strong>
   <br/>
   <strong>Your AI engineering team for robotics. You lead. Agents build.</strong>
 </p>
