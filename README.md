@@ -185,6 +185,56 @@ EOF
 
 ---
 
+## 技术栈
+
+**AI / Agent**
+
+| 组件 | 用途 |
+|------|------|
+| [Claude Code](https://claude.ai/claude-code) (Anthropic) | Agent 运行时，工具调用，多 Agent 协作 |
+| Claude Opus 4.6 | 调度器 + 架构师（深度推理） |
+| Claude Sonnet 4.6 | Alpha/Beta/Gamma 开发 Agent（主力编码） |
+| Claude Haiku 4.5 | 记录员 Agent（文档，追踪） |
+
+**机器人 / 嵌入式**
+
+| 组件 | 用途 |
+|------|------|
+| ROS2 Humble | 机器人中间件框架 |
+| MoveIt2 | 机械臂运动规划 |
+| Nav2 | 自主导航栈 |
+| TF2 | 坐标变换管理 |
+| Gazebo / Isaac Sim | 仿真环境 |
+
+**语言 / 构建**
+
+| 组件 | 用途 |
+|------|------|
+| Python 3.10+ | 节点、Launch 文件、工具链 |
+| C++17 | 实时路径、性能关键组件 |
+| colcon / CMake / ament | ROS2 构建系统 |
+| Docker | 开发 + 部署容器化 |
+
+**测试 / 质量**
+
+| 组件 | 用途 |
+|------|------|
+| pytest | Python 单元测试 |
+| gtest | C++ 单元测试 |
+| launch_testing | ROS2 集成测试 |
+| ruff + black | Python 格式化 / lint |
+| bandit | Python 安全扫描 |
+| cppcheck | C++ 静态分析 |
+
+**CI / 工作流**
+
+| 组件 | 用途 |
+|------|------|
+| GitHub Actions | 持续集成 |
+| git worktree | 多 Agent 并行隔离 |
+
+---
+
 ## 背景
 
 在 [Vector Robotics](https://github.com/yusenthebot) 实战打磨 -- 开发自主导航栈、机械臂控制（SO-101 + MoveIt2）和感知管线。此配置每天用于真实的 ROS2 开发，Claude Code 就是整个工程团队。
@@ -371,6 +421,56 @@ The governance model, SDD+TDD methodology, and agent team architecture are **sta
 2. `rules/` -- swap build/test commands for your toolchain
 3. `skills/ros2-development.md` -- replace with your domain patterns
 4. Everything else works as-is
+
+---
+
+## Tech Stack
+
+**AI / Agents**
+
+| Component | Role |
+|-----------|------|
+| [Claude Code](https://claude.ai/claude-code) (Anthropic) | Agent runtime, tool use, multi-agent orchestration |
+| Claude Opus 4.6 | Dispatcher + Architect (deep reasoning) |
+| Claude Sonnet 4.6 | Alpha/Beta/Gamma dev agents (core coding) |
+| Claude Haiku 4.5 | Scribe agent (docs, tracking) |
+
+**Robotics / Embedded**
+
+| Component | Role |
+|-----------|------|
+| ROS2 Humble | Robot middleware framework |
+| MoveIt2 | Manipulator motion planning |
+| Nav2 | Autonomous navigation stack |
+| TF2 | Coordinate transform management |
+| Gazebo / Isaac Sim | Simulation environments |
+
+**Languages / Build**
+
+| Component | Role |
+|-----------|------|
+| Python 3.10+ | Nodes, launch files, tooling |
+| C++17 | Real-time paths, performance-critical |
+| colcon / CMake / ament | ROS2 build system |
+| Docker | Dev + deploy containerization |
+
+**Testing / Quality**
+
+| Component | Role |
+|-----------|------|
+| pytest | Python unit tests |
+| gtest | C++ unit tests |
+| launch_testing | ROS2 integration tests |
+| ruff + black | Python formatting / lint |
+| bandit | Python security scanning |
+| cppcheck | C++ static analysis |
+
+**CI / Workflow**
+
+| Component | Role |
+|-----------|------|
+| GitHub Actions | Continuous integration |
+| git worktree | Multi-agent parallel isolation |
 
 ---
 
