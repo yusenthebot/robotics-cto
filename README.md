@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="vector.jpg" width="800" alt="VECTOR" />
+  <img src="vector.png" width="800" alt="VECTOR" />
 </p>
 
 <h1 align="center">Robotics CTO</h1>
