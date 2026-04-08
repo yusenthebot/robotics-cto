@@ -4,28 +4,65 @@
   },
   "permissions": {
     "allow": [
-      "Read",
-      "Edit",
-      "MultiEdit",
-      "Write",
-      "Glob",
-      "Grep",
-      "LS",
-      "Task",
-      "WebFetch",
-      "WebSearch",
-      "Bash(*)",
-      "Update(*)"
+      "Read", "Edit", "MultiEdit", "Write",
+      "Glob", "Grep", "LS", "Task",
+      "WebFetch", "WebSearch", "Bash(*)", "Update(*)"
     ],
     "deny": [
-      "Bash(rm -rf /:*)",
-      "Bash(rm -rf ~:*)",
-      "Bash(sudo rm -rf:*)",
-      "Bash(mkfs:*)",
-      "Bash(shutdown:*)",
-      "Bash(reboot:*)"
+      "Bash(rm -rf /:*)", "Bash(rm -rf ~:*)",
+      "Bash(sudo rm -rf:*)", "Bash(mkfs:*)",
+      "Bash(shutdown:*)", "Bash(reboot:*)"
     ]
   },
   "model": "opus[1m]",
-  "effortLevel": "high"
+  "effortLevel": "high",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [{ "type": "command", "command": "bash ~/.claude/hooks/suggest-compact.sh", "timeout": 3 }],
+        "description": "Suggest /compact at logical intervals to prevent context overflow"
+      },
+      {
+        "matcher": "Edit|Write",
+        "hooks": [{ "type": "command", "command": "bash ~/.claude/hooks/config-protection.sh", "timeout": 3 }],
+        "description": "Block modifications to CMakeLists.txt, package.xml, linter configs"
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [{ "type": "command", "command": "bash ~/.claude/hooks/commit-quality.sh", "timeout": 10 }],
+        "description": "Pre-commit quality check: secrets, print/cout, debugger, hardcoded IPs"
+      },
+      {
+        "matcher": "Write",
+        "hooks": [{ "type": "command", "command": "bash ~/.claude/hooks/doc-file-warning.sh", "timeout": 3 }],
+        "description": "Warn about ad-hoc documentation files (NOTES.md, SESSION_*.md, etc.)"
+      },
+      {
+        "matcher": "*",
+        "hooks": [{ "type": "command", "command": "bash ~/.claude/skills/continuous-learning-v2/hooks/observe.sh pre", "timeout": 10, "async": true }],
+        "description": "Capture tool use observations for continuous learning"
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [{ "type": "command", "command": "bash ~/.claude/skills/continuous-learning-v2/hooks/observe.sh post", "timeout": 10, "async": true }],
+        "description": "Capture tool results for continuous learning"
+      }
+    ],
+    "PreCompact": [
+      {
+        "matcher": "*",
+        "hooks": [{ "type": "command", "command": "bash ~/.claude/hooks/pre-compact-save.sh", "timeout": 5 }],
+        "description": "Save state checkpoint before context compaction"
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [{ "type": "command", "command": "bash ~/.claude/hooks/session-to-wiki.sh 2>/dev/null || true", "timeout": 10, "async": true }],
+        "description": "Save session entry to wiki raw/entries/ for later absorption"
+      }
+    ]
+  }
 }
